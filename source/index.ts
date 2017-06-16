@@ -9,11 +9,13 @@ const timeout = (length: number) => (
 var first, second;
 readCpuValues().then(values => {
     console.log("recorded first value");
+    console.log(values);
     first = values;
     return timeout(5000);
 }).then(() => readCpuValues())
 .then(values => {
     console.log("recorded second value");
+    console.log(values);
     second = values;
     const delta = getDelta(first, second);
     const relative = getRelative(delta);
