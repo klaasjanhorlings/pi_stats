@@ -1,9 +1,11 @@
 import winston from "winston";
 import { readFile } from "fs";
 
+const procPath = "/proc/stat";
+
 export const readCpuValues = () => (
     new Promise<CpuStats[]>((resolve, reject) => {
-        readFile("/proc/stat", (err, data) => {
+        readFile(procPath, (err, data) => {
             if (err) {
                 reject(err);
             } else {
