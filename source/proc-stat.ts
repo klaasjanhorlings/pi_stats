@@ -1,14 +1,18 @@
 import winston from "winston";
-import { promisify } from "util";
 import { readFile } from "fs";
-import { execFile } from "child_process";
 
-const readFileAsync = promisify(readFile);
-
-export async function readCpuValues() {
-    const rawValues = await readFileAsync("/proc/stat", "utf8");
-    return processStatOutput(rawValues);
-}
+export const readCpuValues = () => (
+    new Promise<CpuStats[]>((resolve, reject) => {
+        readFile("/proc/stat", (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                const parsed = processStatOutput(data.toString());
+                resolve(parsed);
+            }
+        })
+    })
+); 
 
 export const getDelta = (prev: CpuStats, current: CpuStats): CpuStats => ({
     name:   current.name,

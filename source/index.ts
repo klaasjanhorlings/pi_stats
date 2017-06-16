@@ -6,13 +6,6 @@ const timeout = (length: number) => (
     })
 );
 
-const log = () => (
-    new Promise(resolve => {
-        console.log("Resolve");
-        resolve();
-    })
-);
-
 var first, second;
 readCpuValues().then(values => {
     console.log("recorded first value");
