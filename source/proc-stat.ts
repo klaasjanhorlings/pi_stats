@@ -23,13 +23,13 @@ const processCpuLine = (line: string) => {
     }
 
     return {
-        name:   line[0],
-        user:   parseInt(line[1]),
-        nice:   parseInt(line[2]),
-        system: parseInt(line[3]),
-        idle:   parseInt(line[4]),
-        iowait: parseInt(line[5]),
-        irq:    parseInt(line[6]),
-        softirq: parseInt(line[7])
+        name:   words[0],
+        user:   parseInt(words[1]),
+        nice:   parseInt(words[2]),
+        system: parseInt(words[3]),
+        idle:   parseInt(words[4]),
+        iowait: parseInt(words[5]),
+        irq:    parseInt(words[6]),
+        softirq: parseInt(words[7])
     };
 }
